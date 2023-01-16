@@ -10,6 +10,6 @@
 
 <body>
    <header>
-      <h1>My Blog</h1>
+      <h1>Blogsite</h1>
    </header>
    <main>
