@@ -1,7 +1,9 @@
 <?php
-require 'includes/init.php';
+require '../includes/init.php';
 
-$conn = require 'includes/db.php';
+Auth::requireLogin();
+
+$conn = require '../includes/db.php';
 
 if (isset($_GET['id'])) {
    $article = Article::getWithCategories($conn, $_GET['id']);
@@ -13,7 +15,7 @@ if (isset($_GET['id'])) {
 ?>
 
 
-<?php require 'includes/header.php' ?>
+<?php require '../includes/header.php' ?>
 
 <?php if ($article) : ?>
 
@@ -37,10 +39,16 @@ if (isset($_GET['id'])) {
    </article>
 
 
+   <div>
+      <a href="edit-article.php?id=<?= $article[0]['id']; ?>">Edit</a>
+      <a href="delete-article.php?id=<?= $article[0]['id']; ?>">Delete</a>
+      <a href="edit-article-image.php?id=<?= $article[0]['id']; ?>">Edit image</a>
+   </div>
+
 <?php else : ?>
 
    <p>No article</p>
 
 <?php endif; ?>
 
-<?php require 'includes/footer.php' ?>
+<?php require '../includes/footer.php' ?>

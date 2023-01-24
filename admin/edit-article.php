@@ -1,10 +1,10 @@
 <?php
-require 'classes/Database.php';
-require 'classes/Article.php';
-require 'includes/url.php';
+require '../includes/init.php';
 
-$db = new Database();
-$conn = $db->getConn();
+Auth::requireLogin();
+
+$conn = require '../includes/db.php';
+
 
 if (isset($_GET['id'])) {
 
@@ -18,26 +18,33 @@ if (isset($_GET['id'])) {
    die("id not supplied, article not found");
 }
 
+$category_ids = array_column($article->getCategories($conn), 'id');
+
+$categories = Category::getAll($conn);
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $article->title = $_POST['title'];
    $article->content = $_POST['content'];
    $article->published_at = $_POST['published_at'];
 
+   $category_ids = $_POST['category'] ?? [];
 
    if ($article->update($conn)) {
-      redirect("/article.php?id={$article->id}");
+      $article->setCategories($conn, $category_ids);
+      Url::redirect("/admin/article.php?id={$article->id}");
    }
 }
 
+
+
 ?>
 
-<?php require 'includes/header.php'; ?>
-
-<a href="index.php">Home</a>
+<?php require '../includes/header.php'; ?>
 
 <h2>Edit article</h2>
 
 <?php require 'includes/article-form.php' ?>
 
-<?php require 'includes/footer.php'; ?>
+<?php require '../includes/footer.php'; ?>
