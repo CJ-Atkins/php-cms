@@ -20,7 +20,7 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset, true)
 
 <?php else : ?>
 
-   <ul>
+   <ul id="index">
       <?php foreach ($articles as $article) : ?>
          <li>
             <article>

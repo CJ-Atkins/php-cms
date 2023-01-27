@@ -4,28 +4,34 @@
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>PHP</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="/css/styles.css">
+   <link rel="stylesheet" href="/css/jquery.datetimepicker.min.css">
+   <title>PHP CMS</title>
 </head>
 
 <body>
-   <header>
-      <h1>Blogsite</h1>
-   </header>
+   <div class="container">
+      <header>
+         <h1>Blogsite</h1>
+      </header>
 
-   <nav>
-      <ul>
-         <li><a href="/">Home</a></li>
-         <?php if (Auth::isLoggedIn()) : ?>
+      <nav>
+         <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <?php if (Auth::isLoggedIn()) : ?>
 
-            <li><a href="/admin/">Admin</a></li>
-            <li><a href="/logout.php">Log out</a></li>
+               <li class="nav-item"><a class="nav-link" href="/admin/">Admin</a></li>
+               <li class="nav-item"><a class="nav-link" href="/logout.php">Log out</a></li>
 
-         <?php else : ?>
+            <?php else : ?>
 
-            <li><a href="/login.php">Log in</a></li>
+               <li class="nav-item"><a class="nav-link" href="/login.php">Log in</a></li>
 
-         <?php endif; ?>
-      </ul>
-   </nav>
-   <main>
+            <?php endif; ?>
+
+            <li class="nav-item"><a class="nav-link" href="/contact.php">Contact</a></li>
+         </ul>
+      </nav>
+      <main>
