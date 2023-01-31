@@ -39,14 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       try {
          $mail->isSMTP();
-         $mail->Host = 'smtp.hostinger.com';
+         $mail->Host = SMTP_HOST;
          $mail->SMTPAuth = true;
-         $mail->Username = 'connor@cjatkins.co.uk';
-         $mail->Password = 'lKmnOpr123!';
+         $mail->Username = SMTP_USER;
+         $mail->Password = SMTP_PASS;
          $mail->SMTPSecure = 'ssl';
          $mail->Port = 465;
 
-         $mail->setFrom('connor@cjatkins.co.uk');
+         $mail->setFrom('contact@cjatkins.co.uk');
          $mail->addAddress('connoratkins@hotmail.co.uk');
          $mail->addReplyTo($email);
          $mail->Subject = $subject;

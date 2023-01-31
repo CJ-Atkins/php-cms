@@ -5,19 +5,44 @@
 class Database
 {
 
+   // Hostname
+   // @var string
+   protected $db_host;
+   // Database name
+   // @var string
+   protected $db_name;
+   // Database username
+   // @var string
+   protected $db_user;
+   // Database user password
+   // @var string
+   protected $db_pass;
+
+   // Constructor
+   // @param string $host Hostname
+   // @param string $name Database name
+   // @param string $user Username
+   // @param string $password PASSWORD_BCRYPT
+   // @return void
+   public function __construct($host, $name, $user, $password)
+   {
+      $this->db_host = $host;
+      $this->db_name = $name;
+      $this->db_user = $user;
+      $this->db_pass = $password;
+   }
+
+
    // Get the database connection_aborted
    // @return PDO object Connection to the database server
    public function getConn()
    {
-      $db_host = "localhost";
-      $db_name = "cms";
-      $db_user = 'cms_www';
-      $db_pass = ']5OodUvz](ydoT9Y';
 
-      $dsn = 'mysql:host=' . $db_host . ';dbname=' . $db_name . ';charset=utf8';
+
+      $dsn = 'mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . ';charset=utf8';
 
       try {
-         $db = new PDO($dsn, $db_user, $db_pass);
+         $db = new PDO($dsn, $this->db_user, $this->db_pass);
          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          return $db;
       } catch (PDOException $e) {
